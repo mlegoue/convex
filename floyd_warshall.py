@@ -1,0 +1,140 @@
+import numpy
+import networkx as nx
+
+def floyd_warshall(graph):
+    M = []
+    chemin = {}
+    for i in range (graph.number_of_nodes()):
+        M.append([float('inf')]*graph.number_of_nodes())
+    for origin in graph.nodes():
+        chemin[origin] = {}
+        voisins_origin = [n for n in graph[origin]]
+        for destination in graph.nodes():
+            if origin == destination:
+                M[origin][destination] = 0
+                chemin[origin][destination] = []
+            elif destination in voisins_origin:
+                M[origin][destination] = 1
+                chemin[origin][destination] = [[origin, destination]]
+    for k in graph.nodes():
+        for i in graph.nodes():
+            for j in graph.nodes():
+                ancien_min = M[i][j]
+                M[i][j] = min(M[i][j], M[i][k] + M[k][j])
+                if i != k and k !=j and i != j and M[i][j] != float('inf'):
+                    if M[i][k] + M[k][j] < ancien_min:
+                        chemin[i][j] = [chemin[i][k][0] + chemin[k][j][0][1:]]
+                    elif ancien_min == M[i][k] + M[k][j]:
+                        chemin[i][j].append(chemin[i][k][0] + chemin[k][j][0][1:])
+    return M, chemin
+
+
+# G = nx.Graph()
+# G.add_edge(0, 1)
+# G.add_edge(0, 2)
+# G.add_edge(1, 2)
+# G.add_edge(0, 3)
+# G.add_edge(1, 3)
+# G.add_edge(1, 4)
+# G.add_edge(3, 4)
+
+
+def partiesliste(seq):
+    p = []
+    i, imax = 0, 2**len(seq)-1
+    while i <= imax:
+        s = []
+        j, jmax = 0, len(seq)-1
+        while j <= jmax:
+            if (i>>j)&1 == 1:
+                s.append(seq[j])
+            j += 1
+        p.append(s)
+        i += 1
+    return p
+
+
+def convexe_subset(graph):
+    matrice, chemins = floyd_warshall(graph)
+    parties =  partiesliste(list(graph.nodes()))
+    convexes = []
+    for sous_graphe in parties:
+        convexe = True
+        for origin in sous_graphe:
+            for destination in sous_graphe:
+                for chemin in chemins[origin][destination]:
+                    convexe = convexe and set(chemin).issubset(set(sous_graphe))
+        if convexe :
+            convexes.append(sous_graphe)
+    return convexes
+
+
+#convexes = convexe_subset(G)
+
+
+def complementaire(sous_liste, liste):
+    for noeud in sous_liste:
+        liste.remove(noeud)
+    return liste
+
+
+def attributs_subset(graph):
+    convexes = convexe_subset(graph)
+    attributs = []
+    for convexe in convexes:
+        compl = complementaire(convexe, list(graph.nodes()))
+        parties = partiesliste(compl)
+        successeurs = []
+        for partie in parties:
+            if partie != []:
+                for convexe2 in convexes:
+                    if set(convexe + partie) == set(convexe2):
+                        if successeurs == []:
+                            successeurs.append(convexe2)
+                        else:
+                            for successeur in successeurs:
+                                if not set(successeur).issubset(set(convexe2)):
+                                   successeurs.append(convexe2)
+        if len(successeurs) == 1:
+            attributs.append(convexe)
+    return attributs
+
+
+# print(attributs_subset(G))
+#
+# H = nx.erdos_renyi_graph(8, 0.7)
+# I = nx.binomial_graph(8, 0.5)
+# J = nx.connected_watts_strogatz_graph(8, 4, 0.5)
+# print(H.edges())
+#
+# import matplotlib.pyplot as plt
+#
+# nx.draw(H, with_labels=True, font_weight='bold')
+#
+# plt.show()
+#
+# nx.draw(J, with_labels=True, font_weight='bold')
+# nx.draw(nx.watts_strogatz_graph(8, 4, 0.5), with_labels=True, font_weight='bold')
+#
+# plt.show()
+#
+# resultats = []
+#
+# for k in range (5, 20):
+#     for j in range (2, k//2):
+#         I = nx.connected_watts_strogatz_graph(k, j, 0.1)
+#         resultats.append((k, j, len(convexe_subset(I)), len(attributs_subset(I))))
+#         print(k, j)
+#
+# import csv
+# with open('resultat.csv', 'w', newline='') as csvfile:
+#     spamwriter = csv.writer(csvfile)
+#     for resultat in resultats:
+#         spamwriter.writerow(resultat)
+
+from k_arbres import deux_arbres
+
+for i in range(3, 10):
+    arbre = deux_arbres(i)
+    print("arbre =", arbre.edges())
+    print("attributs =", attributs_subset(arbre))
