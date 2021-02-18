@@ -28,21 +28,33 @@ from test import hierarchy_pos
 # #display_contexte(objets2, attributs2, contexte2)
 
 ### 2-arbre ###
+#
+# from tree_to_context_by_lattice import arbre_to_treillis, treillis_to_contexte
+# from convex import graphe_to_treillis
+#
+# G = nx.Graph()
+#
+# G.add_edge(1, 2)
+# G.add_edge(1, 3)
+# G.add_edge(2, 3)
+#
+#
+#
+# print(graphe_to_treillis(G).edges())
+#
+# display_contexte(*treillis_to_contexte(graphe_to_treillis(G)))
 
-from tree_to_context_by_lattice import arbre_to_treillis, treillis_to_contexte
-from convex import graphe_to_treillis
+from floyd_warshall import attributs_subset, convexe_subset
 
-G = nx.Graph()
+H = nx.Graph()
+H.add_edges_from([(1, 2), (1, 3), (2, 3), (1, 4), (2, 4), (2, 5), (3, 5), (2, 6), (4, 6)])
+convexes = convexe_subset(H)
 
-G.add_edge(1, 2)
-G.add_edge(1, 3)
-G.add_edge(2, 3)
+for convexe in convexes:
+    print(convexe.nodes())
 
-
-
-print(graphe_to_treillis(G).edges())
-
-display_contexte(*treillis_to_contexte(graphe_to_treillis(G)))
-
+attributs = attributs_subset(H)
+for attribut in attributs:
+    print(attribut.nodes())
 
 
