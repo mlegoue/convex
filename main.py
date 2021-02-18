@@ -44,17 +44,11 @@ from test import hierarchy_pos
 #
 # display_contexte(*treillis_to_contexte(graphe_to_treillis(G)))
 
-from floyd_warshall import attributs_subset, convexe_subset
+from floyd_warshall_2 import attributs_subset, convexe_subset
+from k_arbres import deux_arbres
 
-H = nx.Graph()
-H.add_edges_from([(1, 2), (1, 3), (2, 3), (1, 4), (2, 4), (2, 5), (3, 5), (2, 6), (4, 6)])
+H = deux_arbres(20)
 convexes = convexe_subset(H)
-
-for convexe in convexes:
-    print(convexe.nodes())
-
+print(len(convexes), convexes)
 attributs = attributs_subset(H)
-for attribut in attributs:
-    print(attribut.nodes())
-
-
+print(len(attributs), attributs)

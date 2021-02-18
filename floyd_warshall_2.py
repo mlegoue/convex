@@ -64,7 +64,6 @@ def partiesliste(seq):
 
 def convexe_subset(graph):
     chemins = plus_court_chemin(graph)
-    parties = partiesliste(list(graph.nodes()))
     convexes = []
     i, imax = 0, 2 ** len(list(graph.nodes())) - 1
     while i <= imax:
@@ -100,15 +99,19 @@ def attributs_subset(graph):
     for convexe in convexes:
         attribut = True
         compl = complementaire(convexe, list(graph.nodes()))
-        parties = partiesliste(compl)
         successeurs = []
-        i = 0
-        while attribut and i < len(parties):
-            partie = parties[i]
+        i, imax = 0, 2 ** len(compl) - 1
+        while attribut and i <= imax:
+            partie = []
+            j, jmax = 0, len(compl) - 1
+            while j <= jmax:
+                if (i >> j) & 1 == 1:
+                    partie.append(compl[j])
+                j += 1
             if partie != []:
-                j = 0
-                while attribut and j < len(convexes):
-                    convexe2 = convexes[j]
+                k = 0
+                while attribut and k < len(convexes):
+                    convexe2 = convexes[k]
                     if set(convexe + partie) == set(convexe2):
                         if successeurs == []:
                             successeurs.append(convexe2)
@@ -116,7 +119,7 @@ def attributs_subset(graph):
                             if not set(successeurs[0]).issubset(set(convexe2)):
                                 successeurs.append(convexe2)
                                 attribut = False
-                    j = j + 1
+                    k = k + 1
             i = i + 1
         if attribut and len(successeurs) == 1:
             attributs.append(convexe)
@@ -162,9 +165,9 @@ def attributs_subset(graph):
 #     print("arbre =", arbre.edges())
 #     print("attributs =", attributs_subset(arbre))
 
-H = nx.Graph()
-H.add_edges_from([(1, 2), (1, 3), (2, 3), (1, 4), (2, 4), (2, 5), (3, 5), (2, 6), (4, 6)])
-convexes = convexe_subset(H)
-print(convexes)
-print(len(convexes))
-print(attributs_subset(H))
+# H = nx.Graph()
+# H.add_edges_from([(1, 2), (1, 3), (2, 3), (1, 4), (2, 4), (2, 5), (3, 5), (2, 6), (4, 6)])
+# convexes = convexe_subset(H)
+# print(convexes)
+# print(len(convexes))
+# print(attributs_subset(H))

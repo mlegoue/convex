@@ -9,4 +9,4 @@ def deux_arbres(n):
         graph.add_edges_from([(edge[0], i), (edge[1],i)])
     return graph
 
-print(deux_arbres(5).edges())
+# print(deux_arbres(5).edges())
