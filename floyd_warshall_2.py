@@ -123,7 +123,8 @@ def attributs_subset(graph):
             i = i + 1
         if attribut and len(successeurs) == 1:
             attributs.append(convexe)
-    return attributs
+            print(len(attributs))
+    return convexes, attributs
 
 
 # print(attributs_subset(G))

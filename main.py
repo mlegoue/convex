@@ -47,8 +47,19 @@ from test import hierarchy_pos
 from floyd_warshall_2 import attributs_subset, convexe_subset
 from k_arbres import deux_arbres
 
-H = deux_arbres(20)
-convexes = convexe_subset(H)
+H = deux_arbres(15)
+convexes, attributs = attributs_subset(H)
 print(len(convexes), convexes)
-attributs = attributs_subset(H)
+
+import csv
+with open('convexes.csv', 'w', newline='') as csvfile:
+    spamwriter = csv.writer(csvfile)
+    for convexe in convexes:
+        spamwriter.writerow(convexe)
+
 print(len(attributs), attributs)
+
+with open('attributs.csv', 'w', newline='') as csvfile:
+    spamwriter = csv.writer(csvfile)
+    for attribut in attributs:
+        spamwriter.writerow(attribut)
