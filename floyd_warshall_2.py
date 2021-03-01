@@ -64,6 +64,7 @@ def partiesliste(seq):
 
 def convexe_subset(graph):
     chemins = plus_court_chemin(graph)
+    print("chemin ok")
     convexes = []
     i, imax = 0, 2 ** len(list(graph.nodes())) - 1
     while i <= imax:
@@ -80,6 +81,7 @@ def convexe_subset(graph):
                     convexe = convexe and set(chemin).issubset(set(sous_graphe))
         if convexe:
             convexes.append(sous_graphe)
+        print(len(convexes), i, imax)
         i += 1
     return convexes
 

@@ -1,9 +1,3 @@
-import networkx as nx
-from tree_to_context import arbre_to_contexte, display_contexte
-import matplotlib.pyplot as plt
-from test import hierarchy_pos
-
-
 #### Arbre ####
 
 # G = nx.Graph()
@@ -44,7 +38,7 @@ from test import hierarchy_pos
 #
 # display_contexte(*treillis_to_contexte(graphe_to_treillis(G)))
 
-from floyd_warshall_2 import attributs_subset, convexe_subset
+from floyd_warshall_2 import attributs_subset
 from k_arbres import deux_arbres
 
 H = deux_arbres(15)

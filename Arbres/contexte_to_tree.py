@@ -18,6 +18,7 @@ def check_parity(contexte):
         check = check and np.count_nonzero(ligne == 0) == np.count_nonzero(ligne == 1)
     return check
 
+
 def find_two_columns(contexte):
     find_one = False
     find_n = False
@@ -65,6 +66,7 @@ def contexte_to_arbre_rec(contexte, arbre, objets):
             return contexte_to_arbre_rec(new_contexte, arbre, new_objets)
         else:
             print("Ce n'est pas un arbre")
+
 
 def contexte_to_arbre(contexte):
     arbre = nx.Graph()
