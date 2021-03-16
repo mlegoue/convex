@@ -81,7 +81,7 @@ def convexe_subset(graph):
                     convexe = convexe and set(chemin).issubset(set(sous_graphe))
         if convexe:
             convexes.append(sous_graphe)
-        print(len(convexes), i, imax)
+        print(len(convexes), i, imax, i/imax)
         i += 1
     return convexes
 
