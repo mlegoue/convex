@@ -18,6 +18,14 @@ import networkx as nx
 #                      [0, 0, 1, 1, 1, 0, 1, 0, 1, 0],
 #                      [1, 1, 0, 0, 0, 1, 0, 1, 0, 1]])
 
+contexte = np.array([[0, 1, 0, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1],
+                     [0, 1, 0, 0, 0, 1, 1, 0, 1, 0, 0, 1, 1],
+                     [0, 1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0],
+                     [0, 1, 1, 0, 0, 1, 0, 1, 1, 1, 1, 0, 0],
+                     [1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0],
+                     [0, 1, 0, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1],
+                     [1, 0, 1, 1, 0, 0, 1, 0, 1, 0, 1, 1, 0]])
+
 def is_deux_arbre(arbre):
     noeuds = list(arbre.nodes())
     edges = list(arbre.edges())
@@ -130,12 +138,13 @@ def find_x_y(contexte, u, objets):
     attribut3 = []
     for j in range(len(contexte[objets.index(u)])):
         attribut = contexte_to_attribut(contexte[:, j], objets)
+        print(couples, attribut)
         if len(attribut) == 3 and u in attribut:
             attributbis = attribut.copy()
             del attributbis[attributbis.index(u)]
             attribut3.append(attributbis)
         if contexte[objets.index(u)][j] == 0:
-            if np.count_nonzero(contexte[:,j]) != len(contexte) - 1:
+            if np.count_nonzero(contexte[:, j]) != len(contexte) - 1:
                 a_supp = []
                 for couple in couples:
                     if set(couple).issubset(attribut):
@@ -182,6 +191,7 @@ def contexte_to_deuxarbre(contexte, objets, arbres):
     else:
         contexteT, u, new_objets = contexteT_utocontexteT(contexte, objets.copy())
         couples = find_x_y(contexte, u, objets)
+        print(couples, u)
         trees = []
         for couple in couples:
             for arbre in arbres:
@@ -199,15 +209,14 @@ def contexte_to_deuxarbre(contexte, objets, arbres):
 from deux_arbre_to_contexte import deux_arbres_to_attributs, attributs_to_contexte
 from k_arbres import deux_arbres
 
-arbre = deux_arbres(10)
-edges, attributs, convexes = deux_arbres_to_attributs(arbre)
-objets, attributs, contxt = attributs_to_contexte(list(arbre.nodes()), attributs)
+#arbre = deux_arbres(7)
+#edges, attributs, convexes = deux_arbres_to_attributs(arbre)
+#objets, attributs, contxt = attributs_to_contexte(list(arbre.nodes()), attributs)
 
-arbres = contexte_to_deuxarbre(np.array(contxt), list(arbre.nodes()), [nx.Graph()])
+arbres = contexte_to_deuxarbre(contexte, list(range(7)), [nx.Graph()])
 
-print(contxt)
+print(contexte)
 
 for arbre in arbres:
     print("coucou", arbre.edges())
 
-print(arbre.edges())
