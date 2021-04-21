@@ -1,0 +1,41 @@
+Lille Europe
+Lille Europe,TGV Haute-Picardie
+Lorraine TGV,Nancy,Dijon,Dole,Saverne
+Le Mans,Massy-TGV,Paris,Lille Europe,TGV Haute-Picardie,Lorraine TGV,Nancy,Saverne,St-Pierre-des-Corps,Vendome-TGV
+Le Mans,Massy-TGV,Paris,Lille Europe,TGV Haute-Picardie,Lorraine TGV,St-Pierre-des-Corps,Vendome-TGV,Nimes
+Hyeres
+Le Mans,Massy-TGV,St-Pierre-des-Corps,Vendome-TGV,Nimes,Avignon-TGV,Hyeres
+Le Mans,Massy-TGV,St-Pierre-des-Corps,Vendome-TGV,Nimes,Avignon-TGV,Valence-TGV Rhone Alpes Sud,Hyeres
+Le Mans,St-Pierre-des-Corps,Nimes,Avignon-TGV,Valence-TGV Rhone Alpes Sud,Hyeres,Lyon,Chambery
+St-Pierre-des-Corps,Vendome-TGV,Nimes,Avignon-TGV,Valence-TGV Rhone Alpes Sud,Hyeres,Lyon,Chambery
+Le Mans,St-Pierre-des-Corps,Vendome-TGV,Nimes,Avignon-TGV,Valence-TGV Rhone Alpes Sud,Hyeres,Lyon,Chambery
+St-Pierre-des-Corps,Nimes,Avignon-TGV,Valence-TGV Rhone Alpes Sud,Hyeres,Lyon,Chambery,Culoz
+Lorraine TGV,Dole,Saverne,Culoz,Bourg-en-Bresse
+Dole,Saverne,Chambery,Culoz,Bourg-en-Bresse
+Nancy,Dijon,Nimes,Avignon-TGV,Valence-TGV Rhone Alpes Sud,Hyeres,Lyon,Chambery,Macon-TGV
+Nancy,Dijon,Dole,Saverne,Avignon-TGV,Valence-TGV Rhone Alpes Sud,Hyeres,Lyon,Chambery,Culoz,Bourg-en-Bresse,Macon-TGV
+Dijon,Dole,Nimes,Avignon-TGV,Valence-TGV Rhone Alpes Sud,Hyeres,Lyon,Chambery,Culoz,Bourg-en-Bresse,Macon-TGV
+St-Pierre-des-Corps,Nimes,Avignon-TGV,Valence-TGV Rhone Alpes Sud,Hyeres,Lyon,Chambery,Culoz,Bourg-en-Bresse,Macon-TGV
+Nimes,Avignon-TGV,Valence-TGV Rhone Alpes Sud,Hyeres,Lyon,Chambery,Culoz,Bourg-en-Bresse,Macon-TGV,Le Creusot-TGV
+Nancy,Dijon,Montbard
+Le Mans,Massy-TGV,Paris,Lille Europe,TGV Haute-Picardie,Lorraine TGV,Nancy,Dijon,Dole,Saverne,St-Pierre-des-Corps,Vendome-TGV,Nimes,Avignon-TGV,Valence-TGV Rhone Alpes Sud,Hyeres,Lyon,Chambery,Culoz,Bourg-en-Bresse,Macon-TGV,Le Creusot-TGV,Montbard
+Le Mans,Massy-TGV,Paris,Lille Europe,TGV Haute-Picardie,Lorraine TGV,Saverne,St-Pierre-des-Corps,Vendome-TGV,Laroche-Migennes
+Le Mans,Massy-TGV,Paris,Lille Europe,TGV Haute-Picardie,Lorraine TGV,Saverne,St-Pierre-des-Corps,Vendome-TGV,Le Creusot-TGV,Laroche-Migennes
+Le Mans,Massy-TGV,Paris,Lille Europe,TGV Haute-Picardie,St-Pierre-des-Corps,Vendome-TGV,Nimes,Avignon-TGV,Valence-TGV Rhone Alpes Sud,Hyeres,Lyon,Chambery,Culoz,Bourg-en-Bresse,Macon-TGV,Le Creusot-TGV,Laroche-Migennes
+Le Mans,Massy-TGV,Paris,Lille Europe,TGV Haute-Picardie,Lorraine TGV,Nancy,Dijon,Dole,Saverne,Vendome-TGV,Montbard,Laroche-Migennes
+Le Mans,Massy-TGV,Paris,Lille Europe,TGV Haute-Picardie,Lorraine TGV,St-Pierre-des-Corps,Vendome-TGV,Montbard,Laroche-Migennes
+Le Mans,Massy-TGV,Paris,Lille Europe,TGV Haute-Picardie,Lorraine TGV,St-Pierre-des-Corps,Vendome-TGV,Le Creusot-TGV,Montbard,Laroche-Migennes
+Le Mans,Massy-TGV,Paris,Lille Europe,TGV Haute-Picardie,Lorraine TGV,Nancy,Dijon,St-Pierre-des-Corps,Vendome-TGV,Nimes,Avignon-TGV,Valence-TGV Rhone Alpes Sud,Hyeres,Lyon,Macon-TGV,Le Creusot-TGV,Montbard,Laroche-Migennes
+Le Mans,Massy-TGV,Paris,Lille Europe,TGV Haute-Picardie,Dijon,St-Pierre-des-Corps,Vendome-TGV,Nimes,Avignon-TGV,Valence-TGV Rhone Alpes Sud,Hyeres,Lyon,Chambery,Macon-TGV,Le Creusot-TGV,Montbard,Laroche-Migennes
+Le Mans,Massy-TGV,Paris,Lille Europe,TGV Haute-Picardie,Lorraine TGV,Nancy,Dijon,Dole,Saverne,Bourg-en-Bresse,Macon-TGV,Le Creusot-TGV,Montbard,Laroche-Migennes
+Massy-TGV,Paris,Lille Europe,TGV Haute-Picardie,Lorraine TGV,Nancy,Dijon,Dole,Saverne,Vendome-TGV,Bourg-en-Bresse,Macon-TGV,Le Creusot-TGV,Montbard,Laroche-Migennes
+Le Mans,Massy-TGV,Paris,Lille Europe,TGV Haute-Picardie,Lorraine TGV,Nancy,Dijon,Dole,Saverne,Vendome-TGV,Bourg-en-Bresse,Macon-TGV,Le Creusot-TGV,Montbard,Laroche-Migennes
+Le Mans,Massy-TGV,Paris,Lille Europe,TGV Haute-Picardie,Lorraine TGV,Nancy,Dijon,Dole,Saverne,St-Pierre-des-Corps,Vendome-TGV,Nimes,Avignon-TGV,Valence-TGV Rhone Alpes Sud,Hyeres,Lyon,Bourg-en-Bresse,Macon-TGV,Le Creusot-TGV,Montbard,Laroche-Migennes
+Massy-TGV,Paris,Lille Europe,TGV Haute-Picardie,Lorraine TGV,Nancy,Dijon,Dole,Saverne,Culoz,Bourg-en-Bresse,Macon-TGV,Le Creusot-TGV,Montbard,Laroche-Migennes
+Massy-TGV,Paris,Lille Europe,TGV Haute-Picardie,Lorraine TGV,Nancy,Dijon,Dole,Saverne,Lyon,Chambery,Culoz,Bourg-en-Bresse,Macon-TGV,Le Creusot-TGV,Montbard,Laroche-Migennes
+Paris,Lille Europe,TGV Haute-Picardie,Lorraine TGV,Nancy,Dijon,Dole,Saverne,Valence-TGV Rhone Alpes Sud,Lyon,Chambery,Culoz,Bourg-en-Bresse,Macon-TGV,Le Creusot-TGV,Montbard,Laroche-Migennes
+Le Mans,Massy-TGV,Paris,Lille Europe,TGV Haute-Picardie,Lorraine TGV,Nancy,Dijon,Dole,Saverne,St-Pierre-des-Corps,Vendome-TGV,Nimes,Valence-TGV Rhone Alpes Sud,Lyon,Chambery,Culoz,Bourg-en-Bresse,Macon-TGV,Le Creusot-TGV,Montbard,Laroche-Migennes
+Le Mans,Massy-TGV,Paris,Lille Europe,TGV Haute-Picardie,Lorraine TGV,Nancy,Dijon,Dole,Saverne,St-Pierre-des-Corps,Vendome-TGV,Nimes,Avignon-TGV,Valence-TGV Rhone Alpes Sud,Lyon,Chambery,Culoz,Bourg-en-Bresse,Macon-TGV,Le Creusot-TGV,Montbard,Laroche-Migennes
+Dijon,Dole,Avignon-TGV,Valence-TGV Rhone Alpes Sud,Hyeres,Lyon,Chambery,Culoz,Bourg-en-Bresse,Macon-TGV,Le Creusot-TGV,Montbard,Laroche-Migennes
+Le Mans,Massy-TGV,Paris,Lorraine TGV,Nancy,Dijon,Dole,Saverne,St-Pierre-des-Corps,Vendome-TGV,Nimes,Avignon-TGV,Valence-TGV Rhone Alpes Sud,Hyeres,Lyon,Chambery,Culoz,Bourg-en-Bresse,Macon-TGV,Le Creusot-TGV,Montbard,Laroche-Migennes
+Le Mans,Massy-TGV,Paris,TGV Haute-Picardie,Lorraine TGV,Nancy,Dijon,Dole,Saverne,St-Pierre-des-Corps,Vendome-TGV,Nimes,Avignon-TGV,Valence-TGV Rhone Alpes Sud,Hyeres,Lyon,Chambery,Culoz,Bourg-en-Bresse,Macon-TGV,Le Creusot-TGV,Montbard,Laroche-Migennes
