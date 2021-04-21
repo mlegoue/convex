@@ -64,7 +64,6 @@ def partiesliste(seq):
 
 def convexe_subset(graph):
     chemins = plus_court_chemin(graph)
-    print("chemin ok")
     convexes = []
     i, imax = 0, 2 ** len(list(graph.nodes())) - 1
     while i <= imax:
@@ -81,8 +80,8 @@ def convexe_subset(graph):
                     convexe = convexe and set(chemin).issubset(set(sous_graphe))
         if convexe:
             convexes.append(sous_graphe)
-        print(len(convexes), i, imax, i/imax)
         i += 1
+        #print(len(convexes), i, imax, i*100/imax)
     return convexes
 
 
@@ -94,9 +93,22 @@ def complementaire(sous_liste, liste):
         liste.remove(noeud)
     return liste
 
+def powerset(seq):
+    """
+    Returns all the subsets of this set. This is a generator.
+    """
+    if len(seq) <= 1:
+        yield seq
+        yield []
+    else:
+        for item in powerset(seq[1:]):
+            yield [seq[0]]+item
+            yield item
+
 
 def attributs_subset(graph):
     convexes = convexe_subset(graph)
+    #print(len(convexes))
     attributs = []
     for convexe in convexes:
         attribut = True
@@ -123,9 +135,9 @@ def attributs_subset(graph):
                                 attribut = False
                     k = k + 1
             i = i + 1
+            #print(i, imax, i*100/imax)
         if attribut and len(successeurs) == 1:
             attributs.append(convexe)
-            print(len(attributs))
     return convexes, attributs
 
 

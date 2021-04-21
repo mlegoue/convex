@@ -1,3 +1,5 @@
+from floyd_warshall_2 import attributs_subset
+
 with open("metro.txt", 'r') as file:
     lignes = file.readlines()
     metro = {}
@@ -44,7 +46,38 @@ plt.show()
 
 print(metro_graphe.number_of_nodes(), metro_graphe.number_of_edges())
 
-from floyd_warshall_2 import convexe_subset
+metro_min = metro_graphe.copy()
 
-convexes = convexe_subset(metro_graphe)
-print(convexes)
+for node in metro_graphe.nodes():
+    if metro_min.degree[node] == 2:
+        voisins = list(nx.neighbors(metro_min, node))
+        metro_min.add_edge(voisins[0], voisins[1])
+        metro_min.remove_node(node)
+
+bout_branche = []
+
+for node in metro_min.nodes():
+    if nx.degree(metro_min, nbunch=node) == 1:
+        bout_branche.append(node)
+
+
+for node in bout_branche:
+    metro_min.remove_node(node)
+
+# options = {
+#     'node_color': 'pink',
+#     'node_size': 50,
+# }
+#
+# nx.draw(metro_min, **options, with_labels=True)
+# plt.show()
+
+print(metro_min.number_of_nodes(), metro_min.number_of_edges())
+
+attributs = attributs_subset(metro_min)[1]
+
+import csv
+with open('attributs_metro_min.csv', 'w', newline='') as csvfile:
+    spamwriter = csv.writer(csvfile)
+    for c in attributs:
+        spamwriter.writerow(c)

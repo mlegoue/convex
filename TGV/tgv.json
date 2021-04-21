@@ -1,0 +1,418 @@
+{
+  "Brest - Rennes": [
+    "Brest",
+    "Landerneau",
+    "Morlaix",
+    "Plouaret-Tregor",
+    "Guingamp",
+    "Saint-Brieuc",
+    "Lamballe",
+    "Rennes"
+  ],
+  "Lannion - Plouaret": [
+    "Lannion",
+    "Plouaret-Tregor"
+  ],
+  "Saint-Malo - Rennes": [
+    "Saint-Malo",
+    "Dol",
+    "Rennes"
+  ],
+  "Quimper - Rennes": [
+    "Quimper",
+    "Rosporden",
+    "Quimperle",
+    "Lorient",
+    "Auray",
+    "Vannes",
+    "Redon",
+    "Rennes"
+  ],
+  "Rennes - Paris": [
+    "Rennes",
+    "Vitre",
+    "Laval",
+    "Le Mans",
+    "Massy-TGV",
+    "Paris"
+  ],
+  "Le Havre - Massy": [
+    "Le Havre",
+    "Yvetot",
+    "Rouen",
+    "Versailles",
+    "Massy-Palaiseau",
+    "Massy-TGV"
+  ],
+  "Cherbourg - Paris": [
+    "Cherbourg",
+    "Caen",
+    "Lisieux",
+    "Evreux",
+    "Mantes-la-Jolie",
+    "Conflans-Fin-d'Oise",
+    "Marne-la-Vallee Chessy TGV",
+    "Paris"
+  ],
+  "Boulogne/mer - St-Omer": [
+    "Boulogne-sur-mer",
+    "Calais-Frethun",
+    "Calais Ville",
+    "St-Omer"
+  ],
+  "Dunkerque - St-Omer": [
+    "Dunkerque",
+    "St-Omer"
+  ],
+  "St-Omer - Bruxelles": [
+    "St-Omer",
+    "Wasquehal",
+    "Bruxelles"
+  ],
+  "Tourcoing - TGV Haute-Picardie": [
+    "Tourcoing",
+    "Roubaix Croix",
+    "Wasquehal",
+    "Lille Europe",
+    "TGV Haute-Picardie"
+  ],
+  "St-Omer - TGV Haute-Picardie": [
+    "St-Omer",
+    "Hazebrouck",
+    "Bethune",
+    "Lens",
+    "Arras",
+    "TGV Haute-Picardie"
+  ],
+  "Arras - Lille": [
+    "Arras",
+    "Lille Europe"
+  ],
+  "Valenciennes - Arras": [
+    "Valenciennes",
+    "Douai",
+    "Arras"
+  ],
+  "TGV Haute-Picardie - Paris": [
+    "TGV Haute-Picardie",
+    "Aeroport CDG TGV",
+    "Paris"
+  ],
+  "Sedan - Paris": [
+    "Sedan",
+    "Charleville-Mezieres",
+    "Rethel",
+    "Reims",
+    "Paris"
+  ],
+  "Luxembourg - Lorraine TGV": [
+    "Luxembourg",
+    "Thionville",
+    "Metz",
+    "Lorraine TGV"
+  ],
+  "Metz - Nancy": [
+    "Metz",
+    "Nancy"
+  ],
+  "Forbach - Lorraine TGV": [
+    "Forbach",
+    "Lorraine TGV"
+  ],
+  "Dijon - Lorraine TGV par Nancy": [
+    "Lorraine TGV",
+    "Nancy",
+    "Neufchateau",
+    "Dijon"
+  ],
+  "Dijon - Lorraine TGV par Colmar": [
+    "Dijon",
+    "Dole",
+    "Besancon",
+    "Mulhouse",
+    "Colmar",
+    "Strasbourg",
+    "Saverne",
+    "Lorraine TGV"
+  ],
+  "Remiremont - Nancy": [
+    "Remiremont",
+    "Epinal",
+    "Nancy"
+  ],
+  "St-Die - Nancy": [
+    "St-Die-des-Vosges",
+    "Luneville",
+    "Nancy"
+  ],
+  "Luneville - Saverne": [
+    "Luneville",
+    "Sarrebourg",
+    "Saverne"
+  ],
+  "Lorraine TGV - Paris": [
+    "Lorraine TGV",
+    "Meuse-TGV",
+    "Ardenne-TGV",
+    "Paris"
+  ],
+  "Bar-le-Duc - Ardenne": [
+    "Bar-le-Duc",
+    "Vitry-le-Francois",
+    "Chalon-en-Champagne",
+    "Ardenne-TGV"
+  ],
+  "Brive - Paris": [
+    "Brive-la-Gaillarde",
+    "Limoges",
+    "La Souterraine",
+    "Chateauroux",
+    "Vierzon",
+    "Les Aubrais-Orleans",
+    "Melun",
+    "Paris"
+  ],
+  "Le Croisic - Nantes": [
+    "Le Croisic",
+    "Le Pouliguen",
+    "La Baule-Escoublac",
+    "Pornichet",
+    "St-Nazaire",
+    "Savenay",
+    "Nantes"
+  ],
+  "Les Sables d'Olonne - Nantes": [
+    "Les Sables d'Olonne",
+    "La Roche sur Yon",
+    "Nantes"
+  ],
+  "Nantes - Angers": [
+    "Nantes",
+    "Ancenis",
+    "Angers"
+  ],
+  "Angers - Le Mans": [
+    "Angers",
+    "Sable sur Sarthe",
+    "Le Mans"
+  ],
+  "Angers - Massy-TGV": [
+    "Angers",
+    "Saumur",
+    "Tours",
+    "St-Pierre-des-Corps",
+    "Vendome-TGV",
+    "Massy-TGV"
+  ],
+  "Vendôme - Le Mans": [
+    "Vendome-TGV",
+    "Le Mans"
+  ],
+  "La Rochelle - St-Pierre": [
+    "La Rochelle",
+    "Surgeres",
+    "Niort",
+    "Poitiers",
+    "Futuroscope",
+    "Chatellerault",
+    "St-Pierre-des-Corps"
+  ],
+  "Ruffec - Niort": [
+    "Ruffec",
+    "Niort"
+  ],
+  "Bordeaux - Poitiers": [
+    "Bordeaux",
+    "Libourne",
+    "Angouleme",
+    "Ruffec",
+    "Poitiers"
+  ],
+  "Arcachon - Bordeaux": [
+    "Arcachon",
+    "La Teste",
+    "Facture",
+    "Bordeaux"
+  ],
+  "Irun - Facture": [
+    "Irun",
+    "St-Jean-de-Luz",
+    "Hendaye",
+    "Biarritz",
+    "Bayonne",
+    "Dax",
+    "Facture"
+  ],
+  "Dax - Tarbes": [
+    "Dax",
+    "Orthez",
+    "Pau",
+    "Lourdes",
+    "Tarbes"
+  ],
+  "Bordeaux - Narbonne": [
+    "Bordeaux",
+    "Agen",
+    "Montauban",
+    "Toulouse",
+    "Carcassonne",
+    "Narbonne"
+  ],
+  "Perpignan - Avignon": [
+    "Perpignan",
+    "Narbonne",
+    "Beziers",
+    "Agde",
+    "Sete",
+    "Montpellier",
+    "Nimes",
+    "Avignon-TGV"
+  ],
+  "Nimes - Valence-TGV": [
+    "Nimes",
+    "Valence-TGV Rhone Alpes Sud"
+  ],
+  "Avignon-TGV - Valence-TGV": [
+    "Avignon-TGV",
+    "Valence-TGV Rhone Alpes Sud"
+  ],
+  "Vintimille - Avignon TGV": [
+    "Vintimille",
+    "Menton",
+    "Monaco",
+    "Nice",
+    "Cannes",
+    "Antibes",
+    "St-Raphael-Valescure",
+    "Les Arcs-Draguignan",
+    "Toulon",
+    "Marseille",
+    "Aix-en-Provence TGV",
+    "Avignon-TGV"
+  ],
+  "Toulon - Hyeres": [
+    "Toulon",
+    "Hyeres"
+  ],
+  "Hyeres - Les Arcs":[
+    "Hyeres",
+    "Les Arcs-Draguignan"
+  ],
+  "Miramas - Avignon-TGV": [
+    "Miramas",
+    "Arles",
+    "Avignon-TGV"
+  ],
+  "Avignon-TGV - Valence-TGV par Orange": [
+    "Avignon-TGV",
+    "Avignon Centre",
+    "Orange",
+    "Montelimar",
+    "Valence Ville",
+    "Valence-TGV Rhone Alpes Sud"
+  ],
+  "Valence-TGV - St-Etienne": [
+    "Valence-TGV Rhone Alpes Sud",
+    "Lyon St-Exupery TGV",
+    "Lyon",
+    "St-Etienne"
+  ],
+  "Boucle Lyon - Lyon": [
+    "Lyon",
+    "Chambery",
+    "Culoz",
+    "Bourg-en-Bresse",
+    "Macon-TGV",
+    "Lyon"
+  ],
+  "Grenoble - Chambery": [
+    "Grenoble",
+    "Chambery"
+  ],
+  "Modane - Chambery": [
+    "Modane",
+    "St-Michel-Valloire",
+    "St-Jean-de-Maurienne Modane",
+    "St-Avre-la-Chambre",
+    "Chambery"
+  ],
+  "Bourg-St-Maurice - Chambery": [
+    "Bourg-St-Maurice",
+    "Landry",
+    "Aime-la-Plagne",
+    "Moutiels-Salins",
+    "Albertville",
+    "Chambery"
+  ],
+  "St-Gervais-les-Bains - Chambery": [
+    "St-Gervais-les-Bains",
+    "Salanches",
+    "Cluses",
+    "Annecy",
+    "Chambery"
+  ],
+  "Annecy - Culoz": [
+    "Annecy",
+    "Culoz"
+  ],
+  "Evian - Bellegarde": [
+    "Evian-les-Bains",
+    "Thonon-les-Bains",
+    "Annemasse",
+    "Bellegarde"
+  ],
+  "Genève - Culoz": [
+    "Geneve",
+    "Bellegarde",
+    "Culoz"
+  ],
+  "Vallorbe - Mouchard": [
+    "Vallorbe",
+    "Mouchard"
+  ],
+  "Pontarlier - Mouchard": [
+    "Pontarlier",
+    "Mouchard"
+  ],
+  "Mouchard - Dole": [
+    "Mouchard",
+    "Frasne",
+    "Dole"
+  ],
+  "Frasne - Bourg-en-Bresse": [
+    "Frasne",
+    "Bourg-en-Bresse"
+  ],
+  "Dijon - Macon-TGV": [
+    "Dijon",
+    "Beaune",
+    "Chalon-sur-Saone",
+    "Macon",
+    "Macon-TGV"
+  ],
+  "Macon-TGV - Paris": [
+    "Macon-TGV",
+    "Le Creusot-TGV",
+    "Paris"
+  ],
+  "Dijon - Paris": [
+    "Dijon",
+    "Montbard",
+    "Paris"
+  ],
+  "Le Creusot - Montbard": [
+    "Le Creusot-TGV",
+    "Montbard"
+  ],
+  "Le Creusot - Melun": [
+    "Le Creusot-TGV",
+    "Laroche-Migennes",
+    "Sens",
+    "Fontainbleau-Avon",
+    "Melun"
+  ],
+  "Laroche-Migennes - Montbard": [
+    "Laroche-Migennes",
+    "Montbard"
+  ]
+}
