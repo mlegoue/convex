@@ -93,17 +93,30 @@ def deux_arbres_const(n, graph = None):
         construction.append(graph.copy())
     return construction
 
+def new_attributs(attributs, new_attributs, new_node):
+    for new_attribut in new_attributs:
+        heritage = False
+        for attribut in attributs:
+            if set(attribut + [new_node]) == set(new_attribut) or set(attribut) == set(new_attribut):
+                heritage = True
+        if not heritage and new_node in new_attribut:
+            print(new_attribut)
 
 # H6 = nx.Graph()
 # H6.add_edges_from([(0, 1), (0, 2), (1, 2), (1, 3), (1, 4), (1, 5), (1, 7), (2, 3), (2, 5), (2, 7), (3, 4), (3, 6), (4, 6)])
 #
-# graphes = deux_arbres_const(12, H6)
-# all_attributs = []
-# for graphe in graphes:
-#     print(graphe.edges())
-#     convexes, attributs = attributs_subset(graphe)
-#     print(len(attributs), attributs)
-#     all_attributs.append(attributs)
+graphes = deux_arbres_const(12, nx.Graph())
+all_attributs = []
+old_attributs=[]
+i = 2
+for graphe in graphes:
+    print(graphe.edges())
+    convexes, attributs = attributs_subset(graphe)
+    print(len(attributs), attributs)
+    new_attributs(old_attributs, attributs, i)
+    i = i + 1
+    old_attributs = attributs
+    #all_attributs.append(attributs)
 
 # import csv
 # with open('convexes.csv', 'w', newline='') as csvfile:

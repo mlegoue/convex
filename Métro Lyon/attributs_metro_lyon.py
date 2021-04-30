@@ -1,6 +1,5 @@
 import networkx as nx
 import json
-import matplotlib.pyplot as plt
 from floyd_warshall_2 import plus_court_chemin
 
 def is_convexe(sous_graphe, chemins):

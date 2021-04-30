@@ -13,8 +13,6 @@ grilleca.add_edges_from([(1, 5), (5, 9), (9, 13), (13, 17)])
 grilleca.add_edges_from([(2, 6), (6, 10), (10, 14), (14, 18)])
 grilleca.add_edges_from([(3, 7), (7, 11), (11, 15), (15, 19)])
 
-from floyd_warshall_2 import attributs_subset
-
 #print(attributs_subset(grilleca))
 
 grilletri = nx.Graph()

@@ -46,50 +46,42 @@ def plus_court_chemin(graphe):
             chemin[origin][destination] = list(nx.all_shortest_paths(graphe, origin, destination))
     return chemin
 
-def is_in_list(G, list):
-    if list == []:
-        return False
-    for g in list:
-        if (set(G.edges()) == set(g.edges())) and (set(G.nodes()) == set(g.nodes())):
-            return True
-    return False
 
-
-def is_in_list_nodes(G, list):
-    if list == []:
-        return False
-    for g in list:
-        if (set(G.nodes()) == set(g.nodes())):
-            return True
-    return False
-
-def generate_sous_graphe(G, sous_graphes = []):
-    aretes = G.edges()
-    for arete in aretes:
-        H = G.copy()
-        H.remove_edge(*arete)
-        components = (H.subgraph(c).copy() for c in nx.connected_components(H))
-        for c in components:
-            if not is_in_list(c, sous_graphes):
-                sous_graphes.append(c.copy())
-                if c.number_of_nodes() > 1:
-                    generate_sous_graphe(c, sous_graphes)
-    return sous_graphes
+def partiesliste(seq):
+    p = []
+    i, imax = 0, 2**len(seq)-1
+    while i <= imax:
+        s = []
+        j, jmax = 0, len(seq)-1
+        while j <= jmax:
+            if (i>>j)&1 == 1:
+                s.append(seq[j])
+            j += 1
+        p.append(s)
+        i += 1
+    return p
 
 
 def convexe_subset(graph):
     chemins = plus_court_chemin(graph)
-    sous_graphes = generate_sous_graphe(graph)
     convexes = []
-    for sous_graphe in sous_graphes:
+    i, imax = 0, 2 ** len(list(graph.nodes())) - 1
+    while i <= imax:
+        sous_graphe = []
+        j, jmax = 0, len(list(graph.nodes())) - 1
         convexe = True
+        while j <= jmax:
+            if (i >> j) & 1 == 1:
+                sous_graphe.append(list(graph.nodes())[j])
+            j += 1
         for origin in sous_graphe:
             for destination in sous_graphe:
                 for chemin in chemins[origin][destination]:
-                    convexe = convexe and set(chemin).issubset(set(sous_graphe.nodes()))
-        if convexe and not is_in_list_nodes(sous_graphe, convexes):
+                    convexe = convexe and set(chemin).issubset(set(sous_graphe))
+        if convexe:
             convexes.append(sous_graphe)
-            print(sous_graphe.nodes(), len(convexes))
+        i += 1
+        #print(len(convexes), i, imax, i*100/imax)
     return convexes
 
 
@@ -101,40 +93,52 @@ def complementaire(sous_liste, liste):
         liste.remove(noeud)
     return liste
 
+def powerset(seq):
+    """
+    Returns all the subsets of this set. This is a generator.
+    """
+    if len(seq) <= 1:
+        yield seq
+        yield []
+    else:
+        for item in powerset(seq[1:]):
+            yield [seq[0]]+item
+            yield item
+
 
 def attributs_subset(graph):
     convexes = convexe_subset(graph)
-    print("convexes", len(convexes))
+    #print(len(convexes))
     attributs = []
     for convexe in convexes:
-        compl = complementaire(list(convexe.nodes()), list(graph.nodes()))
-        parties = generate_sous_graphe(graph.subgraph(compl))
-        successeurs = []
         attribut = True
-        i = 0
-        for partie in parties:
-            partie = parties[i]
-            if list(partie.nodes()) != []:
-                j = 0
-                for convexe2 in convexes:
-                    convexe2 = convexes[j]
-                    if set(list(convexe.nodes()) + list(partie.nodes())) == set(list(convexe2.nodes())):
+        compl = complementaire(convexe, list(graph.nodes()))
+        successeurs = []
+        i, imax = 0, 2 ** len(compl) - 1
+        while attribut and i <= imax:
+            partie = []
+            j, jmax = 0, len(compl) - 1
+            while j <= jmax:
+                if (i >> j) & 1 == 1:
+                    partie.append(compl[j])
+                j += 1
+            if partie != []:
+                k = 0
+                while attribut and k < len(convexes):
+                    convexe2 = convexes[k]
+                    if set(convexe + partie) == set(convexe2):
                         if successeurs == []:
-                            successeurs.append(convexe2.copy())
+                            successeurs.append(convexe2)
                         else:
-                            for successeur in successeurs:
-                                if set(convexe2.nodes()).issubset(set(successeur.nodes())):
-                                    successeurs.remove(successeur)
-                                    successeurs.append(convexe2.copy())
-                                elif not set(list(successeur.nodes())).issubset(set(list(convexe2.nodes()))):
-                                    successeurs.append(convexe2)
-                    j = j + 1
-                    print(i,j)
+                            if not set(successeurs[0]).issubset(set(convexe2)):
+                                successeurs.append(convexe2)
+                                attribut = False
+                    k = k + 1
             i = i + 1
-        print(attribut, len(successeurs))
+            #print(i, imax, i*100/imax)
         if attribut and len(successeurs) == 1:
             attributs.append(convexe)
-    return attributs
+    return convexes, attributs
 
 
 # print(attributs_subset(G))
@@ -171,7 +175,20 @@ def attributs_subset(graph):
 
 # from k_arbres import deux_arbres
 #
-# for i in range(3, 10):
+# for i in range(5, 6):
 #     arbre = deux_arbres(i)
 #     print("arbre =", arbre.edges())
 #     print("attributs =", attributs_subset(arbre))
+
+# H = nx.Graph()
+# H.add_edges_from([(1, 2), (1, 3), (2, 3), (1, 4), (2, 4), (2, 5), (3, 5), (2, 6), (4, 6)])
+# convexes = convexe_subset(H)
+# print(convexes)
+# print(len(convexes))
+# print(attributs_subset(H))
+
+G = nx.Graph()
+G.add_edges_from([(0, 1), (0, 2), (0, 3), (0, 4), (0, 5), (0, 9), (1, 2), (2, 3), (2, 5), (2, 6), (3, 4), (3, 6), (3, 7), (3, 8), (3, 9), (4, 7), (7, 8)])
+convexes, attributs = attributs_subset(G)
+print('convexes', convexes)
+print('attributs', attributs)

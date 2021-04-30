@@ -1,7 +1,6 @@
 from find_convexes import find_convexes
 import networkx as nx
 import csv
-import matplotlib.pyplot as plt
 import os
 import json
 
