@@ -1,6 +1,6 @@
 import networkx as nx
 import matplotlib.pyplot as plt
-from Generation_convexes_attributs.Successeurs.find_convexes import convex_hull, plus_court_chemin, find_convexes, in_list, in_list_incomp
+from Generation_convexes_attributs.Successeurs.find_convexes import convex_hull, plus_court_chemin, find_attributs, in_list, in_list_incomp
 
 # on considérera que les noeuds arrivent dans l'ordre (0 puis 1 puis 2 puis 3 ...)
 
@@ -29,7 +29,7 @@ def successeurs(convexe, graphe, chemins):
 
 def draw_lattice(graphe):
     chemins = plus_court_chemin(graphe)
-    convexes, attributs = find_convexes(graphe)
+    convexes, attributs = find_attributs(graphe)
     convexes.sort(key=lambda v: len(v))
     convexes_by_size = {}
     for convexe in convexes:
@@ -65,4 +65,7 @@ def draw_lattice(graphe):
     plt.show()
 
 
+G = nx.Graph()
+G.add_edges_from([(0, 1), (1, 2), (0, 2), (0, 3), (2, 3), (0, 4), (3, 4), (0, 5), (2, 5), (2, 6), (3, 6), (3, 7), (4, 7), (3, 8), (7, 8)])
 
+draw_lattice(G)

@@ -96,6 +96,6 @@ def find_attributs(graphe):
                     non_vu.append(candu)
         if len(successeurs) == 1:
             attributs.append(c)
-    return attributs
+    return convexes, attributs
 
 

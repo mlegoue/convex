@@ -94,6 +94,7 @@ def deux_arbres_const(n, graph = None):
     return construction
 
 def new_attributs(attributs, new_attributs, new_node):
+    print("### Nouveaux attributs ###")
     for new_attribut in new_attributs:
         heritage = False
         for attribut in attributs:
@@ -273,7 +274,7 @@ def deux_arbres_attributs(n):
     return construction, attributs, real_attributs
 
 
-construction, attributs, real_attributs = deux_arbres_attributs(10)
+construction, attributs, real_attributs = deux_arbres_attributs(20)
 
 # for i in range(len(construction)):
 #     print(construction[i].edges())
