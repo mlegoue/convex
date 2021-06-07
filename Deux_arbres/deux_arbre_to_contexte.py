@@ -36,7 +36,7 @@ def deux_arbre_deconst(arbre):
 def equidistant(graph, x, y):
     equi = []
     for node in list(graph.nodes()):
-        if nx.shortest_path_length(graph, x, node) == nx.shortest_path_length(graph, y, node):
+        if (nx.shortest_path_length(graph, x, node) == 1) and (nx.shortest_path_length(graph, y, node) == 1):
             equi.append(node)
     return equi
 

@@ -106,11 +106,12 @@ def new_attributs(attributs, new_attributs, new_node):
 # H6 = nx.Graph()
 # H6.add_edges_from([(0, 1), (0, 2), (1, 2), (1, 3), (1, 4), (1, 5), (1, 7), (2, 3), (2, 5), (2, 7), (3, 4), (3, 6), (4, 6)])
 #
-graphes = deux_arbres_const(12, nx.Graph())
+graphes = deux_arbres_const(25, nx.Graph())
 all_attributs = []
 old_attributs=[]
 i = 2
 for graphe in graphes:
+    print("_____________")
     print(graphe.edges())
     convexes, attributs = attributs_subset(graphe)
     print(len(attributs), attributs)
@@ -265,7 +266,7 @@ def deux_arbres_attributs(n):
     real_convexes = [convexe]
     for i in range(graph.number_of_nodes(), n):
         x, y = random.choice(list(graph.edges()))
-        attributs.append(find_attributs_from_attributs(graph, attributs[-1], x, y, i) + [list(graph.nodes())] + find_attributs_from_convexes(graph, attributs[-1], real_convexes[-1], x, y, i ))
+        #attributs.append(find_attributs_from_attributs(graph, attributs[-1], x, y, i) + [list(graph.nodes())] + find_attributs_from_convexes(graph, attributs[-1], real_convexes[-1], x, y, i ))
         graph.add_edges_from([(x, i), (y, i)])
         construction.append(graph.copy())
         realc, reala = attributs_subset(graph)
@@ -274,7 +275,7 @@ def deux_arbres_attributs(n):
     return construction, attributs, real_attributs
 
 
-construction, attributs, real_attributs = deux_arbres_attributs(20)
+# construction, attributs, real_attributs = deux_arbres_attributs(20)
 
 # for i in range(len(construction)):
 #     print(construction[i].edges())

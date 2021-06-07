@@ -1,29 +1,12 @@
 import numpy as np
 import networkx as nx
 
-contexte = np.array([[1, 1, 0, 1, 0, 0, 1, 0],
-                     [1, 0, 1, 1, 1, 0, 1, 0],
-                     [0, 1, 1, 1, 0, 1, 1, 0],
-                     [0, 0, 1, 0, 1, 1, 1, 1],
-                     [1, 0, 1, 0, 1, 0, 1, 1]])
-
-arbre0 = nx.Graph()
-arbre0.add_edge(1, 2)
-arbre0.add_edge(1, 3)
-arbre0.add_edge(2, 3)
-
-arbre0.edges[1, 2]['labels'] = 3
-arbre0.edges[1, 3]['labels'] = 2
-arbre0.edges[2, 3]['labels'] = 1
-
-arbre3 = nx.Graph()
-arbre3.add_edge(1, 2)
-arbre3.add_edge(0, 1)
-arbre3.add_edge(0, 2)
-
-arbre3.edges[1, 2]['labels'] = 0
-arbre3.edges[0, 1]['labels'] = 2
-arbre3.edges[0, 2]['labels'] = 1
+contexte = np.array([[1, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0],
+                     [1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1],
+                     [0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0],
+                     [0, 0, 1, 0, 1, 1, 1, 1, 1, 0, 0],
+                     [1, 0, 1, 0, 1, 0, 0, 1, 1, 0, 0],
+                     [0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 1]])
 
 
 def find_u(contexte, objets):
@@ -100,6 +83,7 @@ def find_x_y(contexte, u, objets):
             for couple in not_in_attr:
                 couples.remove(couple)
     return couples
+
 
 def powerset(seq):
     """
@@ -180,13 +164,49 @@ def change_label(graph, x, y, u):
             graph.edges[y, u]['labels'].append(node)
 
 
+def is_include(colonne1, colonne2):
+    include = True
+    for i in range(len(colonne1)):
+        if (colonne1[i] == 1 and colonne2[i] == 0):
+            include = False
+    return include
+
+
+def arrow(c):
+    contexte = np.empty([c.shape[0], c.shape[1]], dtype=str)
+    for i in range(contexte.shape[0]):
+        for j in range(contexte.shape[1]):
+            if c[i, j] == 0:
+                inc = False
+                for k in range(contexte.shape[1]):
+                    if k != j:
+                        if c[i, k] == 0:
+                            inc = inc or is_include(c[:, j], c[:, k])
+                if inc:
+                    contexte[i, j] = "m"
+                else:
+                    contexte[i, j] = "M"
+            else:
+                contexte[i, j] = "X"
+    return contexte
+
+
+def reduce(cwa):
+    new_att = []
+    for i in range(cwa.shape[1]):
+        if not "M" in cwa[:, i]:
+            new_att.append(i)
+    return new_att
+
+
+
 def context_to_deux_arbre(context, objets):
     try:
         j, u = find_u(context, objets)
         new_context = np.delete(context, j, axis=1)
         x, y = find_x_y(new_context, u, objets)[0]
         new_context_w_u = np.delete(new_context, objets.index(u), axis=0)
-        liste = clarify_context(new_context_w_u)
+        liste = reduce(arrow(new_context_w_u))
         new_context_clar = np.delete(new_context_w_u, liste, axis=1)
         new_objets = objets.copy()
         new_objets.remove(u)
@@ -208,9 +228,11 @@ def context_to_deux_arbre(context, objets):
     return deux_arbre, arbre
 
 
-deux_arbre, arbre = context_to_deux_arbre(contexte, [0, 1, 2, 3, 4])
+# deux_arbre, arbre = context_to_deux_arbre(contexte, [0, 1, 2, 3, 4])
+#
+# if arbre != None:
+#     print(deux_arbre, arbre.edges())
+# else:
+#     print(deux_arbre)
 
-if arbre != None:
-    print(deux_arbre, arbre.edges())
-else:
-    print(deux_arbre)
+print(arrow(contexte))
