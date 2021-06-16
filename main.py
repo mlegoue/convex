@@ -1,4 +1,4 @@
-from Generation_convexes_attributs.Successeurs.find_convexes import find_attributs
+from Aleatoire.find_convexes import find_attributs
 import networkx as nx
 
 graphe = nx.Graph()

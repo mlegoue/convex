@@ -1,6 +1,6 @@
 import networkx as nx
 import matplotlib.pyplot as plt
-from Generation_convexes_attributs.Successeurs.find_convexes import convex_hull, plus_court_chemin, find_attributs, in_list, in_list_incomp
+from Aleatoire.find_convexes import convex_hull, plus_court_chemin, find_attributs, in_list, in_list_incomp
 
 # on considérera que les noeuds arrivent dans l'ordre (0 puis 1 puis 2 puis 3 ...)
 

@@ -79,7 +79,7 @@ def parties_kel(a, k):
             fn(n - 1, source[j + 1:], en_cours + [source[j]], tout)
         return
     tout = []
-    for i in range(2, k+1):
+    for i in range(1, k+1):
         fn(i, a, [], tout)
     if k == len(a):
         tout.append(a)
@@ -141,15 +141,21 @@ def factorielle(n):
 
 ## equidistant à au moins 2 noeuds
 def equidistant2(noeuds, graph):
-    equidi = []
+    equidi = {}
     for n in list(graph.nodes()):
-        dist = []
+        dist = {}
         if n not in noeuds:
             for i in range(0, len(noeuds)):
-                dist.append(nx.shortest_path_length(graph, noeuds[i], n))
+                if nx.shortest_path_length(graph, noeuds[i], n) in dist:
+                    dist[nx.shortest_path_length(graph, noeuds[i], n)].append(noeuds[i])
+                else:
+                    dist[nx.shortest_path_length(graph, noeuds[i], n)]= [noeuds[i]]
             for d in dist:
-                if dist.count(d) >= 2 and n not in equidi:
-                    equidi.append(n)
+                if len(dist[d]) >= 2 and n not in equidi:
+                    if n in equidi:
+                        equidi[n].append(dist[d])
+                    else:
+                        equidi[n] = [dist[d]]
     return equidi
 
 
@@ -192,17 +198,14 @@ def find_neig(u, objets, old_contexte, contexte, old_graph, old_objets):
             if len(intersection) == len(partie):
                 if u not in attribut and partie not in a_supp:
                     a_supp.append(partie)
-                    print("oui1", partie, attribut)
             elif len(intersection) == 0:
                 if u in attribut and partie not in a_supp:
                     a_supp.append(partie)
-                    print("oui2", partie)
             equi = equidistant(partie, old_graph)
             setequi = set(equi)
             setatt = set(attribut)
             if u in attribut and len(setequi & setatt) >= 1 and partie not in a_supp and len(setatt & set(partie)) < len(partie):
                 a_supp.append(partie)
-                print("oui3", partie)
         for a in a_supp:
             parties.remove(a)
     return parties
@@ -222,19 +225,39 @@ def generate_tri(context, objets):
     return graph
 
 
-def is_cordal_fun(context, objets, equis, all_equi, u, voisins):
+def min_dist(old_graph, voisins, v):
+    mini = float('inf')
+    for voisin in voisins:
+        if nx.shortest_path_length(old_graph, voisin, v) < mini:
+            mini = nx.shortest_path_length(old_graph, voisin, v)
+    return mini
+
+
+def is_cordal_fun(context, objets, equis, u, voisins, old_graph):
     attributs = contexte_to_attribut(context, objets)
     is_cordal = True
     setv = set(voisins)
-    sete = set(equis)
-    setae = set(all_equi)
+    equi = equis.keys()
+    sete = set(equi)
     for attribut in attributs:
         seta = set(attribut)
         no_neig_and_not_u = (len(seta & setv) == 0) and (u not in attribut)
         all_neig_and_u = (len(setv & seta) == len(setv)) and (u in attribut)
-        no_equi_and_neig_and_u = (len(setae & seta) == 0) and (len(setv & seta) > 0) and (u in attribut)
-        equi_and_neig_and_not_u = (len(sete & seta) > 0) and (len(setv & seta) > 0) and (u not in attribut)
-        is_cordal = is_cordal and (no_neig_and_not_u or all_neig_and_u or no_equi_and_neig_and_u or equi_and_neig_and_not_u)
+        no_equi_and_neig_and_u = (len(sete & seta) == 0) and (len(setv & seta) > 0) and (u in attribut)
+        equi_neig = False
+        if equi != []:
+            equi_neig = True
+            for n in equis:
+                for l in equis[n]:
+                    if min_dist(old_graph, voisins, n) < (nx.shortest_path_length(old_graph, n, l[0]) + 1):
+                        ok = True
+                    else:
+                        if len(set(l) & seta) == len(l):
+                            ok = True
+                        else:
+                            ok = False
+                equi_neig = equi_neig and ok
+        is_cordal = is_cordal and (no_neig_and_not_u or all_neig_and_u or no_equi_and_neig_and_u or equi_neig)
     return is_cordal
 
 
@@ -252,15 +275,12 @@ def context_to_cordal(context, objets):
     else:
         is_cordal, cordal = context_to_cordal(new_context_clar, new_objets)
     voisins = find_neig(u, objets, new_context_clar, new_context, cordal, new_objets)[0]
-    print(voisins)
     # except:
     #     is_cordal = False
     if not is_cordal:
         return False, None
     equi = equidistant2(voisins, cordal)
-    all_equi = equidistant(voisins, cordal)
-    is_cordal = is_cordal_fun(new_context, objets, equi, all_equi, u, voisins)
-    print(is_cordal)
+    is_cordal = is_cordal_fun(new_context, objets, equi, u, voisins, cordal)
     if not is_cordal:
         return False, None
     for n in voisins:
@@ -282,7 +302,7 @@ def context_to_cordal(context, objets):
 
 is_cordal, cordal = context_to_cordal(contexte, [0, 1, 2, 3, 4, 5])
 
-print(is_cordal, "ui")
+print(is_cordal)
 if is_cordal:
     print(cordal.edges())
 

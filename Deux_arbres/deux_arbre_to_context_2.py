@@ -137,7 +137,7 @@ def equal(list1, list2):
         return equal
     return False
 
-from Generation_convexes_attributs.Successeurs.find_convexes import find_attributs
+from Aleatoire.find_convexes import find_attributs
 
 equality = True
 

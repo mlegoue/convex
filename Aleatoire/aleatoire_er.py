@@ -1,4 +1,4 @@
-from find_convexes import find_convexes
+from find_convexes import find_attributs
 import networkx as nx
 import csv
 import os
@@ -8,110 +8,123 @@ import json
 if not os.path.exists("Erdos_Renyi"):
     os.makedirs("Erdos_Renyi")
 
-for n in range(20, 21):
-    for p in range(9, 10):
+for n in range(3, 25):
+    for p in range(1, 10):
         if not os.path.exists("Erdos_Renyi/n" + str(n) + "p" + str(p/10)):
             os.makedirs("Erdos_Renyi/n" + str(n) + "p" + str(p/10))
-        G = nx.erdos_renyi_graph(n, p/10)
-        while not nx.is_connected(G):
+        for i in range(100):
+            if not os.path.exists("Erdos_Renyi/n" + str(n) + "p" + str(p/10) + '/nb' + str(i)):
+                os.makedirs("Erdos_Renyi/n" + str(n) + "p" + str(p/10) + '/nb' + str(i))
             G = nx.erdos_renyi_graph(n, p/10)
-        print(n, p/10)
-        convexe, attributs = find_convexes(G)
-        with open("Erdos_Renyi/n" + str(n) + "p" + str(p/10) + '/attributs.csv', 'w', newline='') as csvfile:
-            spamwriter = csv.writer(csvfile)
-            spamwriter.writerow(list(G.nodes()))
-            spamwriter.writerow(list(G.edges()))
-            spamwriter.writerow([len(convexe), len(attributs)])
-            for attribut in attributs:
-                spamwriter.writerow(attribut)
+            while not nx.is_connected(G):
+                G = nx.erdos_renyi_graph(n, p/10)
+            print(n, p/10, i)
+            convexes, attributs = find_attributs(G)
+            with open("Erdos_Renyi/n" + str(n) + "p" + str(p/10) + '/nb' + str(i) + '/attributs.csv', 'w', newline='') as csvfile:
+                spamwriter = csv.writer(csvfile)
+                spamwriter.writerow(list(G.nodes()))
+                spamwriter.writerow(list(G.edges()))
+                spamwriter.writerow(["Nombre de convexes", len(convexes)])
+                spamwriter.writerow(["Nombre d'attributs", len(attributs)])
+                spamwriter.writerow(["Attributs :"])
+                for attribut in attributs:
+                    spamwriter.writerow(attribut)
 
-        ### Nombre d'attributs ###
+            ## Nombre d'attributs et de convexes
 
-        nb_attributs = {}
+            nbatt = len(attributs)
+            nbconv = len(convexes)
 
-        for node in G.nodes():
-            nb_attributs[node] = 0
-            for attribut in attributs:
-                if node in attribut:
-                    nb_attributs[node] += 1
+            ### Nombre d'attributs par noeud ###
 
-        sorted_nb_attributs = {k: v for k, v in sorted(nb_attributs.items(), key=lambda item: item[1], reverse=True)}
+            nb_attributs = {}
 
-        ### Nombre de plus petits attributs incomparables ###
+            for node in G.nodes():
+                nb_attributs[node] = 0
+                for attribut in attributs:
+                    if node in attribut:
+                        nb_attributs[node] += 1
 
-        nb_attributs_incomp = {}
+            sorted_nb_attributs = {k: v for k, v in sorted(nb_attributs.items(), key=lambda item: item[1], reverse=True)}
 
-        for node in list(G.nodes()):
-            attributsNode = []
-            for attribut in attributs:
-                if node in attribut:
-                    attributsNode.append(attribut)
-            attributsNode.sort(key=lambda v: len(v))
-            attributsincomp = []
-            for attribut in attributsNode:
-                incomp = True
-                for attributincomp in attributsincomp:
-                    if set(attributincomp).issubset(attribut):
-                        incomp = False
-                if incomp:
-                    attributsincomp.append(attribut)
-            nb_attributs_incomp[node] = len(attributsincomp)
+            ### Nombre de plus petits attributs incomparables ###
 
-        sorted_nb_attributs_incomp = {k: v for k, v in sorted(nb_attributs_incomp.items(), key=lambda item: item[1],reverse=True)}
+            nb_attributs_incomp = {}
 
-        ### Plus petit attribut et plus grand attribut ###
+            for node in list(G.nodes()):
+                attributsNode = []
+                for attribut in attributs:
+                    if node in attribut:
+                        attributsNode.append(attribut)
+                attributsNode.sort(key=lambda v: len(v))
+                attributsincomp = []
+                for attribut in attributsNode:
+                    incomp = True
+                    for attributincomp in attributsincomp:
+                        if set(attributincomp).issubset(attribut):
+                            incomp = False
+                    if incomp:
+                        attributsincomp.append(attribut)
+                nb_attributs_incomp[node] = len(attributsincomp)
 
-        petit_attribut = {}
-        grand_attribut = {}
+            sorted_nb_attributs_incomp = {k: v for k, v in sorted(nb_attributs_incomp.items(), key=lambda item: item[1],reverse=True)}
 
-        for node in G.nodes():
-            attributsNode = []
-            for attribut in attributs:
-                if node in attribut:
-                    attributsNode.append(attribut)
-            attributsNode.sort(key=lambda v: len(v))
-            petit_attribut[node] = len(attributsNode[0])
-            grand_attribut[node] = len(attributsNode[-1])
+            ### Plus petit attribut et plus grand attribut ###
 
-        sorted_petit_attribut = {k: v for k, v in sorted(petit_attribut.items(), key=lambda item: item[1], reverse=True)}
-        sorted_grand_attribut = {k: v for k, v in sorted(grand_attribut.items(), key=lambda item: item[1], reverse=True)}
+            petit_attribut = {}
+            grand_attribut = {}
 
-        ### Closness centrality ###
+            for node in G.nodes():
+                attributsNode = []
+                for attribut in attributs:
+                    if node in attribut:
+                        attributsNode.append(attribut)
+                attributsNode.sort(key=lambda v: len(v))
+                petit_attribut[node] = len(attributsNode[0])
+                grand_attribut[node] = len(attributsNode[-1])
 
-        ccentrality = {}
+            sorted_petit_attribut = {k: v for k, v in sorted(petit_attribut.items(), key=lambda item: item[1], reverse=True)}
+            sorted_grand_attribut = {k: v for k, v in sorted(grand_attribut.items(), key=lambda item: item[1], reverse=True)}
 
-        for node in G.nodes():
-            ccentrality[node] = nx.closeness_centrality(G, node)
+            ### Closness centrality ###
 
-        sorted_ccentrality = {k: v for k, v in sorted(ccentrality.items(), key=lambda item: item[1], reverse=True)}
+            ccentrality = {}
 
-        ### Betweeness centrality ###
+            for node in G.nodes():
+                ccentrality[node] = nx.closeness_centrality(G, node)
 
-        bcentrality = nx.betweenness_centrality(G)
+            sorted_ccentrality = {k: v for k, v in sorted(ccentrality.items(), key=lambda item: item[1], reverse=True)}
 
-        sorted_bcentrality = {k: v for k, v in sorted(bcentrality.items(), key=lambda item: item[1], reverse=True)}
+            ### Betweeness centrality ###
 
-        ### Eigenvector centrality ###
+            bcentrality = nx.betweenness_centrality(G)
 
-        ecentrality = nx.eigenvector_centrality(G, max_iter=500)
+            sorted_bcentrality = {k: v for k, v in sorted(bcentrality.items(), key=lambda item: item[1], reverse=True)}
 
-        sorted_ecentrality = {k: v for k, v in sorted(ecentrality.items(), key=lambda item: item[1], reverse=True)}
+            ### Eigenvector centrality ###
 
-        ### Degree centrality ###
+            ecentrality = nx.eigenvector_centrality(G, max_iter=500)
 
-        dcentrality = nx.degree_centrality(G)
+            sorted_ecentrality = {k: v for k, v in sorted(ecentrality.items(), key=lambda item: item[1], reverse=True)}
 
-        sorted_dcentrality = {k: v for k, v in sorted(dcentrality.items(), key=lambda item: item[1], reverse=True)}
+            ### Degree centrality ###
 
-        data = {}
-        data['nb_attributs'] = sorted_nb_attributs
-        data['nb_attributs_incomparables'] = sorted_nb_attributs_incomp
-        data['plus_petit_attribut'] = sorted_petit_attribut
-        data['plus_grand_attribut'] = sorted_grand_attribut
-        data['closness_centrality'] = sorted_ccentrality
-        data['betweeness_centrality'] = sorted_bcentrality
-        data['eigenvector_centrality'] = sorted_ecentrality
-        data['degree_centrality'] = sorted_dcentrality
+            dcentrality = nx.degree_centrality(G)
 
-        with open("Erdos_Renyi/n" + str(n) + "p" + str(p/10) + '/data.txt', 'w') as outfile:
-            json.dump(data, outfile)
+            sorted_dcentrality = {k: v for k, v in sorted(dcentrality.items(), key=lambda item: item[1], reverse=True)}
+
+            data = {}
+            data['nb_nodes'] = n
+            data['nb_attributs'] = nbatt
+            data['nb_convexes'] = nbconv
+            data['nb_attributs_par_n'] = sorted_nb_attributs
+            data['nb_attributs_incomparables'] = sorted_nb_attributs_incomp
+            data['plus_petit_attribut'] = sorted_petit_attribut
+            data['plus_grand_attribut'] = sorted_grand_attribut
+            data['closness_centrality'] = sorted_ccentrality
+            data['betweeness_centrality'] = sorted_bcentrality
+            data['eigenvector_centrality'] = sorted_ecentrality
+            data['degree_centrality'] = sorted_dcentrality
+
+            with open("Erdos_Renyi/n" + str(n) + "p" + str(p/10) + '/nb' + str(i) + '/data.txt', 'w') as outfile:
+                json.dump(data, outfile)

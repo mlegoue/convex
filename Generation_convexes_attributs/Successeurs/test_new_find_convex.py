@@ -1,6 +1,6 @@
 import csv
 import networkx as nx
-from find_convexes import find_convexes
+from Aleatoire.find_convexes import find_convexes
 import time
 import matplotlib.pyplot as plt
 
