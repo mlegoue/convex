@@ -74,9 +74,9 @@ plt.show()
 nx.draw(tgv_min, with_labels=True, pos=arrets, node_size=100, font_size=8)
 plt.show()
 
-from floyd_warshall_2 import attributs_subset
+from Generation_convexes_attributs.Successeurs.find_convexes import find_attributs
 
-attributs = attributs_subset(tgv_min)[1]
+attributs = find_attributs(tgv_min)[1]
 
 import csv
 with open('attributs_tgv_min.csv', 'w', newline='') as csvfile:

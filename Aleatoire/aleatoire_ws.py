@@ -8,7 +8,7 @@ import json
 if not os.path.exists("Watts_Strogatz"):
     os.makedirs("Watts_Strogatz")
 
-for n in range(3, 25):
+for n in range(16, 25):
     for m in range(2, n):
         for p in range(1, 10):
             if not os.path.exists("Watts_Strogatz/n" + str(n) + "m" + str(m) + "p" + str(p/10)):
@@ -102,7 +102,7 @@ for n in range(3, 25):
 
                 ### Eigenvector centrality ###
 
-                ecentrality = nx.eigenvector_centrality(G, max_iter=500)
+                ecentrality = nx.eigenvector_centrality(G, max_iter=700)
 
                 sorted_ecentrality = {k: v for k, v in sorted(ecentrality.items(), key=lambda item: item[1], reverse=True)}
 

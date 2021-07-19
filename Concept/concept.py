@@ -34,6 +34,7 @@ def find_extension(objets, intention):
             extension.append(objet)
     return extension
 
+
 def find_concept(objets, attributs):
     subsets = powerset(objets)
     concept = {}
@@ -44,4 +45,3 @@ def find_concept(objets, attributs):
             concept[''.join(list(map(str, subset)))] = intention
     return concept
 
-print(find_concept(objets, attributs))

@@ -74,10 +74,10 @@ def parties_kel(a, k):
         if (n == 0):
             if (len(en_cours) > 0):
                 tout.append(en_cours)
-            return
+            return tout
         for j in range(0, len(source)):
             fn(n - 1, source[j + 1:], en_cours + [source[j]], tout)
-        return
+        return tout
     tout = []
     for i in range(1, k+1):
         fn(i, a, [], tout)
