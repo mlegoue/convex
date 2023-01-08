@@ -3,13 +3,14 @@ import json
 import csv
 import networkx as nx
 
+graph = "Barabasi_Albert"
 
-list_dir = os.listdir("Erdos_Renyi")
+list_dir = os.listdir(graph)
 l = []
 for dir in list_dir:
-        list_dir2 = os.listdir('Erdos_Renyi/' + dir)
+        list_dir2 = os.listdir(graph + '/' + dir)
         for dir2 in list_dir2:
-            with open('Erdos_Renyi/' + dir + '/' + dir2 + '/attributs.csv', newline='') as csvfile:
+            with open(graph + '/' + dir + '/' + dir2 + '/attributs.csv', newline='') as csvfile:
                 spamreader = csv.reader(csvfile, delimiter=',')
                 i = 0
                 for row in spamreader:
@@ -23,10 +24,11 @@ for dir in list_dir:
                 edges_crop.append(res)
             G = nx.Graph()
             G.add_edges_from(edges_crop)
-            with open('Erdos_Renyi/' + dir + '/' + dir2 + '/data.txt') as json_file:
+            with open(graph + '/' + dir + '/' + dir2 + '/data.txt') as json_file:
                 data = json.load(json_file)
-            data["diameter"] = nx.diameter(G)
-            data["density"] = nx.density(G)
-            with open('Erdos_Renyi/' + dir + '/' + dir2 + '/data.txt', 'w') as outfile:
-                json.dump(data, outfile)
+            if "diameter" not in data:
+                data["diameter"] = nx.diameter(G)
+                data["density"] = nx.density(G)
+                with open(graph + '/' + dir + '/' + dir2 + '/data.txt', 'w') as outfile:
+                    json.dump(data, outfile)
             print(dir, dir2)

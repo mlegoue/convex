@@ -6,6 +6,7 @@ def plus_court_chemin(graphe):
     for origin in graphe.nodes():
         chemin[origin] = {}
         for destination in graphe.nodes():
+            #print(graphe.edges(), origin, destination)
             chemin[origin][destination] = list(nx.all_shortest_paths(graphe, origin, destination))
     return chemin
 
@@ -81,10 +82,10 @@ def find_attributs(graphe):
         non_vu.append([node])
         convexes.append([node])
     while non_vu:
-        print(len(convexes))
-        print(len(attributs))
+        # print(len(convexes))
+        # print(len(attributs))
         c = non_vu.pop(0)
-        print("c", len(c), "non_vu", len(non_vu), graphe.number_of_nodes())
+        # print("c", len(c), "non_vu", len(non_vu), graphe.number_of_nodes())
         successeurs = []
         for u in graphe.nodes():
             if u not in c:

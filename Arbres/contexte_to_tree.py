@@ -1,15 +1,22 @@
 import numpy as np
 import networkx as nx
 
-contexte = np.array([[1, 0, 0, 0, 1, 1, 1, 0],
-                     [0, 1, 0, 1, 0, 1, 1, 0],
-                     [0, 0, 1, 1, 1, 0, 0, 1],
-                     [0, 0, 0, 1, 1, 1, 1, 0],
-                     [0, 0, 0, 1, 1, 1, 0, 1]])
+contexte = np.array([[1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0],
+                     [1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0],
+                     [1, 0, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
+                     [1, 0, 1, 0, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
+                     [1, 0, 1, 0, 0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0],
+                     [1, 0, 1, 0, 1, 0, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
+                     [1, 0, 1, 0, 1, 0, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 1, 0],
+                     [1, 0, 1, 0, 1, 0, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1],
+                     [1, 0, 1, 0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 1, 1, 0, 1, 0, 1, 0],
+                     [0, 1, 1, 0, 1, 0, 1, 0, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
+                     [1, 0, 1, 0, 0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0]])
 
 
 def check_taille(contexte):
     return 2 * (len(contexte) - 1) == len(contexte[0])
+
 
 
 def check_parity(contexte):
@@ -17,7 +24,6 @@ def check_parity(contexte):
     for ligne in contexte:
         check = check and np.count_nonzero(ligne == 0) == np.count_nonzero(ligne == 1)
     return check
-
 
 def find_two_columns(contexte):
     find_one = False
@@ -75,5 +81,4 @@ def contexte_to_arbre(contexte):
     return contexte_to_arbre_rec(contexte, arbre, objets)
 
 
-print(contexte_to_arbre(contexte).edges())
 

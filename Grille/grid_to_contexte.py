@@ -66,17 +66,17 @@ def display_contexte(objets, attributs, contexte):
 
 
 
-grilleca = nx.Graph()
-
-grilleca.add_edges_from([(0, 1), (1, 2)])
-grilleca.add_edges_from([(3, 4), (4, 5)])
-grilleca.add_edges_from([(6, 7), (7, 8)])
-
-grilleca.add_edges_from([(0, 3), (3, 6)])
-grilleca.add_edges_from([(1, 4), (4, 7)])
-grilleca.add_edges_from([(2, 5), (5, 8)])
-
-attributs, contexte = grid_to_contexte(grilleca)
-
-display_contexte(list(grilleca.nodes()), attributs, contexte)
+# grilleca = nx.Graph()
+#
+# grilleca.add_edges_from([(0, 1), (1, 2)])
+# grilleca.add_edges_from([(3, 4), (4, 5)])
+# grilleca.add_edges_from([(6, 7), (7, 8)])
+#
+# grilleca.add_edges_from([(0, 3), (3, 6)])
+# grilleca.add_edges_from([(1, 4), (4, 7)])
+# grilleca.add_edges_from([(2, 5), (5, 8)])
+#
+# attributs, contexte = grid_to_contexte(grilleca)
+#
+# display_contexte(list(grilleca.nodes()), attributs, contexte)
 

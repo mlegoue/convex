@@ -1,14 +1,14 @@
-from concept import find_concept
+from Concept.concept import find_concept
 import numpy as np
 import networkx as nx
 
-contexte = np.array([
-     [1, 1, 1, 1, 0, 0, 1, 1],
-     [1, 1, 0, 0, 1, 1, 1, 1],
-     [0, 0, 1, 1, 1, 1, 1, 1],
-     [1, 0, 1, 0, 1, 0, 1, 0],
-     [0, 1, 0, 1, 0, 1, 0, 1]
-])
+# contexte = np.array([
+#      [1, 1, 1, 1, 0, 0, 1, 1],
+#      [1, 1, 0, 0, 1, 1, 1, 1],
+#      [0, 0, 1, 1, 1, 1, 1, 1],
+#      [1, 0, 1, 0, 1, 0, 1, 0],
+#      [0, 1, 0, 1, 0, 1, 0, 1]
+# ])
 
 # ligne 0 = objet 0; ligne 1 = objet 1 ...
 

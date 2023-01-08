@@ -1,5 +1,5 @@
 import numpy as np
-from grille import trace_grille
+from Grille.grille import trace_grille
 
 contexte = np.array([[1, 1, 1, 0, 0, 0, 1, 1, 0, 0],
                      [1, 1, 1, 0, 0, 0, 0, 1, 0, 1],

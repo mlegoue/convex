@@ -113,6 +113,7 @@ def traitement_dens(name):
     for dir in list_dir:
         list_dir2 = os.listdir(name + '/' + dir)
         for dir2 in list_dir2:
+            print(dir, dir2)
             with open(name + '/' + dir + '/' + dir2 + '/data.txt') as json_file:
                 data = json.load(json_file)
             l.append((data["nb_nodes"], data["density"], data["nb_attributs"]))
@@ -261,17 +262,18 @@ def regression_poly_et_exp(y, n, title):
 # l3 = [*zip(*data_ws)]
 # regression_poly_et_exp(l3, 15, "Watts-Strogatz")
 
-# data_all = traitement_par_nb_nodes_list(["Erdos_Renyi", "Watts_Strogatz", "Barabasi_Albert"], "nb_attributs", 15)
-# l3 = [*zip(*data_all)]
-# plt.figure()
-# plt.plot(np.array(l3[0]), np.array(l3[1]), '+')
-# plt.title("Nombre d'attributs en fonction du nombre de sommets - Watts-Strogatz")
-# plt.xlim([2, 16])
-# plt.xticks(np.arange(3, 16))
-# plt.xlabel("Nombre de noeuds")
-# plt.ylabel("Nombre d'attributs")
+data_all = traitement_par_nb_nodes_list(["Erdos_Renyi", "Watts_Strogatz", "Barabasi_Albert"], "nb_attributs", 21)
+l3 = [*zip(*data_all)]
+regression_poly_et_exp(l3, 21, "Tous")
+plt.figure()
+plt.plot(np.array(l3[0]), np.array(l3[1]), '+')
+plt.title("Nombre d'attributs en fonction du nombre de sommets")
+plt.xlim([2, 22])
+plt.xticks(np.arange(3, 21))
+plt.xlabel("Nombre de noeuds")
+plt.ylabel("Nombre d'attributs")
 
-
+#
 # data_dens_ba = traitement_dens("Watts_Strogatz")
 # l = [*zip(*data_dens_ba)]
 #
@@ -296,16 +298,17 @@ def regression_poly_et_exp(y, n, title):
 #     18: "purple",
 #     19: "fuchsia",
 #     20: "hotpink",
-#     21: "pink"
+#     21: "pink",
 # }
 #
 # for n in l[0]:
-#     print(n)
 #     colors.append(n_col[n])
 #
 # for i in range(len(l[0])):
-#     plt.plot(l[1][i], l[2][i], '+', color=colors[i])
-# plt.title("Densité")
+#     plt.plot(l[2][i], l[1][i], '+', color=colors[i])
+# plt.title("Densité en fonction du nombre d'attributs")
+# plt.ylabel("Densité")
+# plt.xlabel("Nombre d'attributs")
 #
 # plt.figure()
 # data_diam_ba = traitement_diam("Watts_Strogatz")
@@ -313,35 +316,15 @@ def regression_poly_et_exp(y, n, title):
 #
 # colors = []
 #
-# n_col = {
-#     3: "black",
-#     4: "gray",
-#     5: "brown",
-#     6: "red",
-#     7: "salmon",
-#     8: "orange",
-#     9: "yellow",
-#     10: "greenyellow",
-#     11: "limegreen",
-#     12: "lime",
-#     13: "turquoise",
-#     14: "cyan",
-#     15: "deepskyblue",
-#     16: "blue",
-#     17: "indigo",
-#     18: "purple",
-#     19: "fuchsia",
-#     20: "hotpink",
-#     21: "pink"
-# }
 #
 # for n in l[0]:
-#     print(n)
 #     colors.append(n_col[n])
 #
 # for i in range(len(l[0])):
-#     plt.plot(l[1][i], l[2][i], '+', color=colors[i])
-# plt.title('Diamètre')
+#     plt.plot(l[2][i], l[1][i], '+', color=colors[i])
+# plt.title("Diamètre en fonction du nombre d'attributs")
+# plt.ylabel("Diamètre")
+# plt.xlabel("Nombre d'attributs")
 
 # plt.figure()
 # plt.plot(np.arange(3, 18, 0.01), y)

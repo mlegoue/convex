@@ -1,7 +1,8 @@
 import csv
 import matplotlib.pyplot as plt
 import math
-
+from scipy.stats import linregress
+import numpy as np
 
 times_find = {}
 times_subset = {}
@@ -22,6 +23,21 @@ with open('attributs_res_20_2/time_attributs_subset.csv', 'r') as file:
         mapped_row = list(map(float, row))
         times_subset[nb_nodes] = mapped_row
         nb_nodes += 1
+
+def regression_exp(y,title):
+    plt.figure()
+    a_min, b_min, r_min, p_value_min, std_err_min = linregress(np.arange(2, 21), np.log(np.array(y)))
+    plt.plot(np.arange(2, 21), np.array(y), label="Temps d'exécution")
+    print(b_min)
+    plt.plot(np.arange(2, 21), np.exp(b_min + a_min * np.arange(2, 21)), label="$y = e^{" + str(round(b_min, 2)) + '+' + str(round(a_min, 2)) + 'x} - r = ' + str(
+                 round(r_min, 3)) + "$")
+    coefs = np.polyfit(np.arange(2, 21), np.array(y), 2)
+    R2 = ((coefs[0] * np.arange(2, 21) ** 2 + coefs[1] * np.arange(2, 21) + coefs[2] - np.array(y).mean()) ** 2).sum() / ((np.array(y) - np.array(y).mean()) ** 2).sum()
+    plt.plot(np.arange(2, 21), coefs[0] * np.arange(2, 21) ** 2 + coefs[1] * np.arange(2, 21) + coefs[2], label="$y = " + str(round(coefs[0], 2)) + 'x^2 + ' + str(round(coefs[1], 2)) + 'x + ' + str(
+                 round(coefs[2], 2)) + ' - r = ' + str(round(np.sqrt(R2), 3)) + '$')
+    plt.title(title)
+    plt.legend()
+
 
 with open('attributs_res_20_2/time_total.csv', 'r') as file:
     reader = csv.reader(file)
@@ -52,9 +68,12 @@ plt.ylabel("Temps d'execution en s")
 #plt.ylim([0, total[1][11]])
 plt.xticks([*range(2, 21)])
 plt.legend()
+
+regression_exp(total[1], "Algorithme naïf")
+regression_exp(total[0], "Amélioration de l'algorithme")
+
 plt.show()
 
-plt.figure()
 
 
 
